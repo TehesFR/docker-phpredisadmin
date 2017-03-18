@@ -3,9 +3,9 @@ FROM composer/composer
 RUN mkdir -p /src/app && cd /src/app && git clone https://github.com/erikdubbelboer/phpRedisAdmin.git .
 WORKDIR /src/app
 
-RUN \
-  composer install && \
-  cp includes/config.environment.inc.php includes/config.inc.php
+COPY includes/config.sample.inc.php /src/app/includes/config.sample.inc.php
+
+RUN composer install
 
 EXPOSE 80
 
